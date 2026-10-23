@@ -7,7 +7,6 @@ import { redirect } from "next/navigation";
 import { authClient } from "../lib/auth-client";
 
 const CancelBooking = ({ res }) => {
-
   const handleCancel = async (id) => {
     const { data, error } = await authClient.token();
 
@@ -44,14 +43,21 @@ const CancelBooking = ({ res }) => {
     }
 
     redirect("/my-bookings");
-
-  } 
+  };
   return (
     <div>
       <div className="mx-auto w-full md:w-9/12 space-y-5 px-4 py-8 sm:px-6">
-        <p className="text-6xl text-center font-bold xl mt-2 block bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 bg-clip-text text-transparent">
-          My Bookings
-        </p>
+        <div className="mb-8">
+          <h1  className="mt-2 text-2xl font-extrabold leading-tight text-slate-900 sm:text-3xl md:text-4xl lg:text-5xl">
+            My <span className="text-cyan-600">Bookings</span> 
+            </h1>
+          <p className="mt-2 text-slate-500">
+            Manage the study rooms you have added.
+          </p>
+          <p className="mt-3 font-semibold text-cyan-600">
+            Total Listings: {res.length}
+          </p>
+        </div>
         {res.map((booking) => {
           const { _id, roomName, imageUrl, bookingDate, hourlyRate, status } =
             booking;

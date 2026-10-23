@@ -24,7 +24,8 @@ const MyListingsPage = async () => {
     <main className="min-h-screen bg-slate-50 px-4 py-12">
       <div className="mx-auto max-w-7xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900">My Listings</h1>
+          <h1  className="mt-2 text-2xl font-extrabold leading-tight text-slate-900 sm:text-3xl md:text-4xl lg:text-5xl">
+            My <span className="text-cyan-600">Listings</span></h1>
           <p className="mt-2 text-slate-500">
             Manage the study rooms you have added.
           </p>
