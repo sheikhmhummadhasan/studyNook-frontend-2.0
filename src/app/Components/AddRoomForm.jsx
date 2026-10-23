@@ -57,8 +57,6 @@ const AddRoomForm = ({ token }) => {
       toast.error("somthing went wront.")
     }
 
-    console.log("post error", error)
-
   };
 
   return (
