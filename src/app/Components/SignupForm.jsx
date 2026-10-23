@@ -30,7 +30,7 @@ const SignupForm = () => {
         typeof Data.image === "string" && Data.image ? Data.image : undefined,
       password: Data.password,
     });
-    console.log(data);
+
     if (data) {
       toast.success("Singup Successfull");
     }
