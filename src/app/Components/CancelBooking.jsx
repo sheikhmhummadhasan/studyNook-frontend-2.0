@@ -18,14 +18,13 @@ const CancelBooking = ({ res }) => {
       },
     });
     const res = await prom.json();
-    
+
     if (res) {
       toast.success("Booking Cancel Successfully");
     }
     if (!res) {
       toast.error("Plese try again later");
     }
-    console.log(res);
     redirect("/my-bookings");
   };
   const handleDelete = async (id) => {
