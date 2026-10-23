@@ -20,8 +20,6 @@ const MyBookingPage = async () => {
     },
   });
   const res = await prom.json();
-  console.log("total booking :",res.length)
-  console.log("All bookings:", res);
   
   return(
     res.length === 0 ?  <NoBookings /> : <CancelBooking res={res} /> 
