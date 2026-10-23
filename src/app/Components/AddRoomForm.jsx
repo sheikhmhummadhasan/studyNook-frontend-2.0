@@ -51,7 +51,6 @@ const AddRoomForm = ({ token }) => {
 
     const res = await prom.json();
 
-    console.log(res);
     if (prom.ok) {
       toast.success("Room post Succesfully Done..")
     }else{
