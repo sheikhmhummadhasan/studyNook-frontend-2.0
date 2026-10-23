@@ -9,12 +9,19 @@ const MyBookingPage = async () => {
     headers: await headers(),
   });
 
-  const prom = await fetch(`http://localhost:5000/booking`, {
+  const session = await auth.api.getSession({
+      headers: await headers()
+    })
+    const id = session?.user?.id;
+
+  const prom = await fetch(`http://localhost:5000/mybooking/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
   const res = await prom.json();
+  console.log("total booking :",res.length)
+  console.log("All bookings:", res);
   
   return(
     res.length === 0 ?  <NoBookings /> : <CancelBooking res={res} /> 

@@ -1,32 +1,30 @@
 import Image from "next/image";
 import { auth } from "../lib/auth";
 import { headers } from "next/headers";
-
+import Link from "next/link";
 
 const MyListingsPage = async () => {
   const session = await auth.api.getSession({
-    headers: await headers()
-  })
-
-  const {token} = await auth.api.getToken({
-    headers: await headers()
-  })
-  console.log(token)
-  const id = session?.user?.id;
-  const prom = await fetch(  `http://localhost:5000/my-listings/${id}`,{
-    headers: {
-        authorization: `Bearer ${token}`,
-      },
+    headers: await headers(),
   });
-  const rooms = await prom.json()
- 
+
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+  console.log(token);
+  const id = session?.user?.id;
+  const prom = await fetch(`http://localhost:5000/my-listings/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+  const rooms = await prom.json();
+
   return (
     <main className="min-h-screen bg-slate-50 px-4 py-12">
       <div className="mx-auto max-w-7xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900">
-            My Listings
-          </h1>
+          <h1 className="text-3xl font-bold text-slate-900">My Listings</h1>
           <p className="mt-2 text-slate-500">
             Manage the study rooms you have added.
           </p>
@@ -95,34 +93,30 @@ const MyListingsPage = async () => {
                   <p className="mt-4 text-xl font-bold text-slate-900">
                     ${room.hourlyRate ?? 0}
                     <span className="text-sm font-normal text-slate-500">
-                      {" "}/ hour
+                      {" "}
+                      / hour
                     </span>
                   </p>
 
                   <div className="mt-4 flex flex-wrap gap-2">
-                    {(Array.isArray(room.amenities)
-                      ? room.amenities
-                      : []
-                    ).slice(0, 3).map((amenity) => (
-                      <span
-                        key={amenity}
-                        className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600"
-                      >
-                        {amenity}
-                      </span>
-                    ))}
+                    {(Array.isArray(room.amenities) ? room.amenities : [])
+                      .slice(0, 3)
+                      .map((amenity) => (
+                        <span
+                          key={amenity}
+                          className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600"
+                        >
+                          {amenity}
+                        </span>
+                      ))}
                   </div>
 
                   <div className="mt-5 flex gap-3">
-                    <button
-                      type="button"
-                    //   onClick={() =>
-                    //     window.location.assign(`/rooms/${room._id}`)
-                    //   }
-                      className="flex-1 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-2.5 font-semibold text-white transition hover:opacity-90"
-                    >
-                      View Room
-                    </button>
+                    <Link href={`/rooms/${room._id}`}>
+                      <button className="flex-1 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-2.5 font-semibold text-white transition hover:opacity-90">
+                        View Room
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </article>

@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { Button, Input, TextArea } from "@heroui/react";
 import { authClient } from "../lib/auth-client";
 import Checkboxes from "./Checkboxs";
+import { toast } from "react-toastify";
 
 const AddRoomForm = ({ token }) => {
   const [amenities, setAmenities] = useState([]);
@@ -30,20 +31,16 @@ const AddRoomForm = ({ token }) => {
   };
 
   const user = session?.user?.id;
-  console.log(user)
+
   const handlePostData = async (e) => {
-    e.preventDefault();
+     e.preventDefault();
 
     const form = e.currentTarget;
-    if (!session) {
-      router.push("/login");
-      return;
-    }
     const formdata = new FormData(form);
     const DData = Object.fromEntries(formdata.entries());
     DData.amenities = amenities;
     DData.createdBY = user;
-    const res = await fetch(`http://localhost:5000/studynook`, {
+    const prom = await fetch(`http://localhost:5000/studynook`, {
       method: "POST",
       headers: {
         authorization: `Bearer ${token}`,
@@ -52,8 +49,17 @@ const AddRoomForm = ({ token }) => {
       body: JSON.stringify(DData),
     });
 
-    const result = await res.json();
-    console.log(result);
+    const res = await prom.json();
+
+    console.log(res);
+    if (prom.ok) {
+      toast.success("Room post Succesfully Done..")
+    }else{
+      toast.error("somthing went wront.")
+    }
+
+    console.log("post error", error)
+
   };
 
   return (
