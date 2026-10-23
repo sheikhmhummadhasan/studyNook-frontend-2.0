@@ -11,7 +11,7 @@ const MyListingsPage = async () => {
   const { token } = await auth.api.getToken({
     headers: await headers(),
   });
-  console.log(token);
+
   const id = session?.user?.id;
   const prom = await fetch(`http://localhost:5000/my-listings/${id}`, {
     headers: {
