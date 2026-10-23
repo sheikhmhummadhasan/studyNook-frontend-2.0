@@ -42,7 +42,7 @@ const CancelBooking = ({ res }) => {
     if (!res) {
       toast.error("Plese try again later");
     }
-    console.log(res);
+
     redirect("/my-bookings");
 
   } 
