@@ -25,7 +25,7 @@ const RoomsDetailcard = ({ res }) => {
   const handelBooking = async () => {
     const user  = await authClient.getSession();
     const bookedBY = user?.data?.user?.id; 
-    console.log("BookedBy", bookedBY)
+
     const { data, error } = await authClient.token();
     const dataColl = {
       amenities,
