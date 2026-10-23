@@ -7,7 +7,7 @@ const RoomsPage = async () => {
 
   const prom = await fetch(`http://localhost:5000/studynook`);
   const res = await prom.json();
-  //   console.log(res)
+
   if (res.length === 0) {
     return (
       <p className="py-10 text-center text-secondary text-lg font-semibold">
