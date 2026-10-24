@@ -7,7 +7,7 @@ import { authClient } from "../lib/auth-client";
 const DeleteButton = ({ id }) => {
   const handelDelete = async () => {
       const { data, error } = await authClient.token();
-    const prom = await fetch(`${process.env.SURVER_URI}/studynook/${id}`, {
+    const prom = await fetch(`http://localhost:5000/studynook/${id}`, {
       headers: {
         authorization: `Bearer ${data?.token}`,
       },

@@ -38,15 +38,16 @@ const RoomsDetailcard = ({ res }) => {
       bookingDate,
       bookedBY
     };
-    const prom = await fetch(`${process.env.SURVER_URI}/booking`, {
+    const prom = await fetch(`http://localhost:5000/booking`, {
       method: "POST",
       headers: {
-        "content-type": "application/json",
         Authorization: `Bearer ${data?.token}`,
+        "content-type": "application/json",
       },
       body: JSON.stringify(dataColl),
     });
     const resP = await prom.json();
+    console.log(resP)
     if(resP){
       toast.success('Booking Confirmed')
       redirect('/my-bookings')

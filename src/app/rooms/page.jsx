@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 
 const RoomsPage = async () => {
 
-  const prom = await fetch(`${process.env.SURVER_URI}/studynook`);
+  const prom = await fetch(`http://localhost:5000/studynook`);
   const res = await prom.json();
 
   if (res.length === 0) {

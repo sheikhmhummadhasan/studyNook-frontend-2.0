@@ -11,7 +11,7 @@ const RoomsDataFetch = async () => {
   });
 
   const prom = await fetch(
-    `${process.env.SURVER_URI}/studynook`,
+    `http://localhost:5000/studynook`,
   );
   const res = await prom.json();
 

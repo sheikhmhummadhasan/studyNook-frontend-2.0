@@ -30,7 +30,7 @@ const EditRooms = ({ id, res, token }) => {
     try {
       const formdata = new FormData(e.currentTarget);
       const data = Object.fromEntries(formdata.entries());
-      const prom = await fetch(`${process.env.SURVER_URI}/studynook/${id}`, {
+      const prom = await fetch(`http://localhost:5000/studynook/${id}`, {
         method: "PATCH",
         headers: {
           authorization: `Bearer ${token}`,
