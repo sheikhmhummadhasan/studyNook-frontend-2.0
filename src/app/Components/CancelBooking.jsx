@@ -10,7 +10,7 @@ const CancelBooking = ({ res }) => {
   const handleCancel = async (id) => {
     const { data, error } = await authClient.token();
 
-    const prom = await fetch(`http://localhost:5000/mybooking/${id}`, {
+    const prom = await fetch(`${process.env.SURVER_URI}/mybooking/${id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${data?.token}`,
@@ -28,7 +28,7 @@ const CancelBooking = ({ res }) => {
   };
   const handleDelete = async (id) => {
     const { data, error } = await authClient.token();
-    const prom = await fetch(`http://localhost:5000/booking/${id}`, {
+    const prom = await fetch(`${process.env.SURVER_URI}/booking/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${data?.token}`,

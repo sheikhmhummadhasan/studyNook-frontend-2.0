@@ -38,7 +38,7 @@ const RoomsDetailcard = ({ res }) => {
       bookingDate,
       bookedBY
     };
-    const prom = await fetch(`http://localhost:5000/booking`, {
+    const prom = await fetch(`${process.env.SURVER_URI}/booking`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

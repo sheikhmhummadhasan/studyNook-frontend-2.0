@@ -9,7 +9,7 @@ const RoomDetailPage = async ({ params }) => {
     headers: await headers(),
   });
 
-  const prom = await fetch(`http://localhost:5000/studynook/${id}`, {
+  const prom = await fetch(`${process.env.SURVER_URI}/studynook/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

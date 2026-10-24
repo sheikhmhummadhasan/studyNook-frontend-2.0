@@ -13,7 +13,7 @@ const MyListingsPage = async () => {
   });
 
   const id = session?.user?.id;
-  const prom = await fetch(`http://localhost:5000/my-listings/${id}`, {
+  const prom = await fetch(`${process.env.SURVER_URI}/my-listings/${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },

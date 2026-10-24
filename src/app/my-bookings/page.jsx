@@ -14,7 +14,7 @@ const MyBookingPage = async () => {
     })
     const id = session?.user?.id;
 
-  const prom = await fetch(`http://localhost:5000/mybooking/${id}`, {
+  const prom = await fetch(`${process.env.SURVER_URI}/mybooking/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

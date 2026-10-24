@@ -8,7 +8,7 @@ const Updatedata = async ({ params }) => {
     headers: await headers(),
   });
   const { id } = await params;
-  const prom = await fetch(`http://localhost:5000/studynook/${id}`);
+  const prom = await fetch(`${process.env.SURVER_URI}/studynook/${id}`);
   const res = await prom.json();
 
   return (
