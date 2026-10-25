@@ -38,7 +38,7 @@ const RoomsDetailcard = ({ res }) => {
       bookingDate,
       bookedBY
     };
-    const prom = await fetch(`http://localhost:5000/booking`, {
+    const prom = await fetch(`${process.env.NEXT_PUPLIC_SURVER_URL}/booking`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${data?.token}`,

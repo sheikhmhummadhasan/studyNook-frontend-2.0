@@ -40,7 +40,7 @@ const AddRoomForm = ({ token }) => {
     const DData = Object.fromEntries(formdata.entries());
     DData.amenities = amenities;
     DData.createdBY = user;
-    const prom = await fetch(`http://localhost:5000/studynook`, {
+    const prom = await fetch(`${process.env.NEXT_PUPLIC_SURVER_URL}/studynook`, {
       method: "POST",
       headers: {
         authorization: `Bearer ${token}`,

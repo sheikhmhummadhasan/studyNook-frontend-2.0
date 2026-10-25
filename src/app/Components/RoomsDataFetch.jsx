@@ -4,17 +4,14 @@ import RoomsCard from "./RoomsCard";
 import { headers } from "next/headers";
 import { auth } from "../lib/auth";
 
-
 const RoomsDataFetch = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 
-  const prom = await fetch(
-    `http://localhost:5000/studynook`,
-  );
+  const prom = await fetch(`${process.env.NEXT_PUPLIC_SURVER_URL}/studynook`);
   const res = await prom.json();
-
+  const rooms = session?.user ? res : res.slice(0, 6);
   return (
     <div>
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -34,7 +31,7 @@ const RoomsDataFetch = async () => {
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {res.map((e) => (
+          {rooms.map((e) => (
             <RoomsCard key={e._id} e={e} />
           ))}
         </div>

@@ -4,9 +4,14 @@ import { auth } from "../lib/auth";
 import { headers } from "next/headers";
 
 const RoomsPage = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
 
-  const prom = await fetch(`http://localhost:5000/studynook`);
+  const prom = await fetch(`${process.env.NEXT_PUPLIC_SURVER_URL}/studynook`);
   const res = await prom.json();
+
+  const rooms = session?.user ? res : res.slice(0, 6);
 
   if (res.length === 0) {
     return (
@@ -34,7 +39,7 @@ const RoomsPage = async () => {
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {res.map((e) => (
+          {rooms.map((e) => (
             <RoomsCard key={e._id} e={e} />
           ))}
         </div>
