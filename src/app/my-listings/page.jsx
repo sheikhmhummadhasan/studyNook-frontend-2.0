@@ -13,7 +13,7 @@ const MyListingsPage = async () => {
   });
 
   const id = session?.user?.id;
-  const prom = await fetch(`${process.env.NEXT_PUPLIC_SURVER_URL}/my-listings/${id}`, {
+  const prom = await fetch(`https://study-nook-backend-pi.vercel.app/my-listings/${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
